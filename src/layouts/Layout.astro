@@ -1,5 +1,8 @@
 ---
 import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const { pageTitle } = Astro.props;
 ---
 
 <!doctype html>
@@ -10,10 +13,11 @@ import Navbar from "../components/Navbar.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/src/styles/global.css" />
     <meta name="generator" content={Astro.generator} />
-    <title>Juan Jose Morales - Homepage</title>
+    <title>Juan Jose Morales - {pageTitle}</title>
   </head>
   <body>
     <Navbar />
     <slot />
+    <Footer />
   </body>
 </html>

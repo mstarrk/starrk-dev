@@ -1,10 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Posts from "../components/Posts.astro";
+const pageTitle = "My Astro Learning Blog";
 ---
 
 <Layout>
-  <h1>My Astro Learning Blog</h1>
+  <h1>{pageTitle}</h1>
   <p>This is where I will post about my journey learning Astro.</p>
   <Posts />
 </Layout>

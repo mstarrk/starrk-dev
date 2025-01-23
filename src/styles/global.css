@@ -5,6 +5,15 @@ body {
   height: 100%;
 }
 
+html.dark {
+  background-color: #08080c;
+  color: #fff;
+}
+
+.dark .nav-links a {
+  color: #fff;
+}
+
 #background {
   position: fixed;
   top: 0;

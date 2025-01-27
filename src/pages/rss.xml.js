@@ -1,11 +1,18 @@
-import rss, { pagesGlobToRssItems } from '@astrojs/rss';
+import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
 
 export async function GET(context) {
+  const posts = await getCollection("blog");
   return rss({
     title: 'Juan Jose Morales | Blog',
     description: 'A mix of thoughts, lessons, and experiments in coding, game dev, and music. Just me sharing the cool stuff I’m working on.',
     site: context.site,
-    items: await pagesGlobToRssItems(import.meta.glob('./**/*.md')),
+    items: posts.map((post) => ({
+      title: post.data.title,
+      pubDate: post.data.pubDate,
+      description: post.data.description,
+      link: `/posts/${post.id}/`,
+    })),    
     customData: `<language>en-us</language>`,
   });
 }

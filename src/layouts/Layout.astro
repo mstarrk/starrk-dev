@@ -2,22 +2,113 @@
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
-const { pageTitle } = Astro.props;
+interface Props {
+  pageTitle: string;
+  description?: string;
+}
+
+const { pageTitle, description = "Juan Jose Morales - Developer portfolio" } =
+  Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="/src/styles/global.css" />
     <meta name="generator" content={Astro.generator} />
     <title>Juan Jose Morales - {pageTitle}</title>
   </head>
   <body>
-    <Navbar />
-    <slot />
-    <Footer />
+    <div class="container mx-auto max-w-3xl px-4 sm:px-6 md:px-8">
+      <Navbar />
+      <main class="pt-14 pb-8">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>
+
+<style is:global>
+  :root {
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent-light)),
+      rgb(var(--accent-dark)) 30%,
+      white 60%
+    );
+
+    --accent-light: 211, 0, 63;
+    --accent-dark: 124, 58, 237;
+    --accent: 136, 58, 234;
+
+    --bg-color: 255, 255, 255;
+    --text-color: 31, 41, 55;
+    --heading-color: 17, 24, 39;
+    --border-color: 229, 231, 235;
+  }
+
+  html {
+    font-family: system-ui, sans-serif;
+    background-color: rgb(var(--bg-color));
+    color: rgb(var(--text-color));
+  }
+
+  html.dark {
+    --bg-color: 15, 23, 42;
+    --text-color: 226, 232, 240;
+    --heading-color: 248, 250, 252;
+    --border-color: 51, 65, 85;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: rgb(var(--bg-color));
+    color: rgb(var(--text-color));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: rgb(var(--heading-color));
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: 1.875rem;
+    margin: 1.5rem 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 1.25rem 0;
+  }
+
+  p {
+    margin: 1rem 0;
+    line-height: 1.6;
+  }
+
+  a {
+    color: rgb(var(--accent));
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>

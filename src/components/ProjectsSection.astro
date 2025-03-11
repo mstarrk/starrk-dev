@@ -1,0 +1,64 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+
+// Mock projects
+const projects = [
+  {
+    title: "Portfolio Website",
+    description:
+      "A personal portfolio website built with Astro and Tailwind CSS.",
+    thumbnail:
+      "https://placehold.co/600x400/9C27B0/FFFFFF/png?text=Portfolio&font=montserrat",
+    url: "/project/portfolio",
+    tags: ["Astro", "Tailwind CSS", "JavaScript"],
+  },
+  {
+    title: "E-commerce Platform",
+    description:
+      "A full-featured e-commerce platform with product management and payment processing.",
+    thumbnail:
+      "https://placehold.co/600x400/2196F3/FFFFFF/png?text=E-commerce&font=montserrat",
+    url: "/project/ecommerce",
+    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+  },
+  {
+    title: "Task Management App",
+    description:
+      "A task management application with drag-and-drop functionality and team collaboration features.",
+    thumbnail:
+      "https://placehold.co/600x400/4CAF50/FFFFFF/png?text=Task+App&font=montserrat",
+    url: "/project/task-app",
+    tags: ["Vue.js", "Express", "PostgreSQL"],
+  },
+  {
+    title: "Weather Dashboard",
+    description:
+      "A weather dashboard that provides real-time weather data and forecasts.",
+    thumbnail:
+      "https://placehold.co/600x400/FF9800/FFFFFF/png?text=Weather&font=montserrat",
+    url: "/project/weather",
+    tags: ["JavaScript", "CSS", "Weather API"],
+  },
+];
+---
+
+<section class="py-8">
+  <h2 class="text-2xl font-bold mb-6 inline-flex items-center space-x-2">
+    <span>Projects</span>
+    <div class="h-1 w-16 bg-purple-600 rounded ml-2"></div>
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+    {
+      projects.map((project) => (
+        <ProjectCard
+          title={project.title}
+          description={project.description}
+          thumbnail={project.thumbnail}
+          url={project.url}
+          tags={project.tags}
+        />
+      ))
+    }
+  </div>
+</section>

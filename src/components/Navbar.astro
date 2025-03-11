@@ -2,11 +2,53 @@
 import ThemeIcon from "./ThemeIcon.astro";
 ---
 
-<section id="links">
-  <a class="button" href="/">Home</a>
-  <a class="button" href="/works">Works</a>
-  <a class="button" href="/blog">Blog</a>
-  <a class="button" href="/tags/">Tags</a>
-  <a class="button" href="/contact">Contact</a>
-  <ThemeIcon />
-</section>
+<header class="py-5">
+  <nav class="flex items-center justify-between">
+    <a href="/" class="logo font-bold text-lg inline-flex items-center">
+      <span
+        class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600"
+      >
+        Juan Jose Morales
+      </span>
+    </a>
+
+    <div class="flex items-center space-x-4">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/works" class="nav-link">Works</a>
+      <a href="/blog" class="nav-link">Blog</a>
+      <a href="/contact" class="nav-link">Contact</a>
+      <ThemeIcon />
+    </div>
+  </nav>
+</header>
+
+<style>
+  .nav-link {
+    padding: 0.5rem;
+    color: rgb(var(--text-color));
+    font-weight: 500;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: rgb(var(--accent));
+    text-decoration: none;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: rgb(var(--accent));
+    transition: all 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 80%;
+    left: 10%;
+  }
+</style>

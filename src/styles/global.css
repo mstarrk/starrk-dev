@@ -14,6 +14,14 @@ html.dark {
   color: #fff;
 }
 
+/* Add these to your global CSS */
+*,
+*::before,
+*::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    color 0.2s ease;
+}
+
 #background {
   position: fixed;
   top: 0;
@@ -176,4 +184,36 @@ code {
   h1 {
     line-height: 1.5;
   }
+}
+
+/* Button styles with animations */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-5 py-2 border border-transparent 
+         text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark
+         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary
+         transition-all duration-300;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-5 py-2 border border-gray-300 
+         dark:border-gray-600 text-base font-medium rounded-md text-gray-700 
+         dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 
+         dark:hover:bg-gray-700 transition-all duration-300;
+}
+
+.badge {
+  @apply inline-block px-2 py-1 text-xs font-medium bg-primary-light/20 
+         dark:bg-primary-dark/30 text-primary-dark dark:text-primary-light 
+         rounded transition-colors duration-300;
+}
+
+/* Card hover animations */
+.project-card {
+  @apply transition-all duration-300 hover:shadow-lg dark:hover:shadow-gray-800/50 
+         hover:translate-y-[-4px];
+}
+
+/* Image hover animations */
+.hover-zoom {
+  @apply transition-transform duration-300 hover:scale-105;
 }

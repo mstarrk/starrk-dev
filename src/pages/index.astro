@@ -1,10 +1,33 @@
 ---
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
+import ProfileSection from "../components/ProfileSection.astro";
+import ProjectsSection from "../components/ProjectsSection.astro";
+import GithubActivity from "../components/GithubActivity.astro";
 
-const pageTitle = "Homepage";
+const pageTitle = "Juan Jose Morales - Full Stack Developer";
 ---
 
-<Layout pageTitle={pageTitle}>
-  <Welcome />
+<Layout
+  pageTitle={pageTitle}
+  description="Full Stack Developer specializing in modern web technologies, automation, and technical operations."
+>
+  <div class="space-y-16">
+    <ProfileSection />
+    <div class="py-8">
+      <h2 class="text-2xl font-bold mb-8 inline-flex items-center">
+        <span>Featured Projects</span>
+        <div class="h-1 w-16 bg-primary rounded ml-2"></div>
+      </h2>
+      <ProjectsSection featured={true} limit={3} />
+      <div class="flex justify-center mt-8">
+        <a
+          href="/works"
+          class="btn-primary transition-all duration-300 hover:scale-105"
+        >
+          View All Projects
+        </a>
+      </div>
+    </div>
+    <GithubActivity />
+  </div>
 </Layout>

@@ -1,0 +1,71 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SkillsSection from "../components/SkillsSection.astro";
+
+const pageTitle = "About Me";
+---
+
+<Layout
+  pageTitle={pageTitle}
+  description="Learn more about Juan Jose Morales - my background, skills, and experience as a developer."
+>
+  <div class="max-w-3xl mx-auto">
+    <header class="py-8">
+      <h1 class="text-3xl font-bold mb-4">About Me</h1>
+      <p class="text-lg text-gray-600 dark:text-gray-300">
+        My journey, skills, and what I'm passionate about.
+      </p>
+    </header>
+
+    <div
+      class="prose prose-lg dark:prose-invert prose-primary max-w-none mb-10"
+    >
+      <p>
+        I'm a Full Stack Developer with a background in technical operations and
+        support. I enjoy building software solutions that solve real problems,
+        focusing on clean code and intuitive user experiences.
+      </p>
+      <p>
+        My technical journey began in support roles, where I developed a keen
+        understanding of user needs and system troubleshooting. This experience
+        has proven invaluable in my transition to development, giving me a
+        unique perspective on creating user-friendly and maintainable
+        applications.
+      </p>
+    </div>
+
+    <SkillsSection />
+
+    <section class="py-8 mt-8">
+      <h2 class="text-2xl font-bold mb-6 inline-flex items-center">
+        <span>CV / Resume</span>
+        <div class="h-1 w-16 bg-primary rounded ml-2"></div>
+      </h2>
+
+      <div
+        class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
+      >
+        <p class="mb-4">
+          Download my full resume to learn more about my experience and skills.
+        </p>
+        <a href="#" class="btn-primary inline-flex items-center" download>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            ></path>
+          </svg>
+          Download Resume (PDF)
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>

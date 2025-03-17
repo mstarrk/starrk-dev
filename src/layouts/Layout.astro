@@ -1,28 +1,66 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   pageTitle: string;
   description?: string;
+  image?: string;
 }
 
-const { pageTitle, description = "Juan Jose Morales - Developer portfolio" } =
-  Astro.props;
+const {
+  pageTitle,
+  description = "Juan Jose Morales - Developer portfolio",
+  image = "/images/social-preview.jpg",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Juan Jose Morales - {pageTitle}</title>
+
+    <!-- Primary Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={description} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- View Transitions for smooth page loads -->
+    <ViewTransitions />
   </head>
   <body>
-    <div class="container mx-auto max-w-3xl px-4 sm:px-6 md:px-8">
+    <div class="container mx-auto max-w-4xl px-4 sm:px-6 md:px-8">
       <Navbar />
       <main class="pt-14 pb-8">
         <slot />
@@ -34,34 +72,48 @@ const { pageTitle, description = "Juan Jose Morales - Developer portfolio" } =
 
 <style is:global>
   :root {
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent-light)),
-      rgb(var(--accent-dark)) 30%,
-      white 60%
+    /* Primary and accent colors defined for CSS variables */
+    --primary-light-rgb: 125, 96, 255;
+    --primary-rgb: 86, 63, 211;
+    --primary-dark-rgb: 54, 38, 145;
+
+    --accent-light-rgb: 255, 106, 151;
+    --accent-rgb: 240, 65, 116;
+    --accent-dark-rgb: 186, 35, 79;
+
+    /* UI Colors - Light Theme */
+    --bg-color: 251, 252, 254;
+    --card-bg: 255, 255, 255;
+    --text-color: 45, 55, 72;
+    --heading-color: 26, 32, 44;
+    --border-color: 226, 232, 240;
+
+    /* Gradient */
+    --gradient: linear-gradient(
+      135deg,
+      rgb(var(--primary)),
+      rgb(var(--accent))
     );
 
-    --accent-light: 211, 0, 63;
-    --accent-dark: 124, 58, 237;
-    --accent: 136, 58, 234;
-
-    --bg-color: 255, 255, 255;
-    --text-color: 31, 41, 55;
-    --heading-color: 17, 24, 39;
-    --border-color: 229, 231, 235;
-  }
-
-  html {
-    font-family: system-ui, sans-serif;
-    background-color: rgb(var(--bg-color));
-    color: rgb(var(--text-color));
+    /* Typography */
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-heading: "Outfit", system-ui, sans-serif;
   }
 
   html.dark {
+    /* UI Colors - Dark Theme */
     --bg-color: 15, 23, 42;
+    --card-bg: 30, 41, 59;
     --text-color: 226, 232, 240;
     --heading-color: 248, 250, 252;
     --border-color: 51, 65, 85;
+  }
+
+  html {
+    font-family: var(--font-body);
+    background-color: rgb(var(--bg-color));
+    color: rgb(var(--text-color));
+    scroll-behavior: smooth;
   }
 
   body {
@@ -78,18 +130,19 @@ const { pageTitle, description = "Juan Jose Morales - Developer portfolio" } =
   h4,
   h5,
   h6 {
+    font-family: var(--font-heading);
     color: rgb(var(--heading-color));
     font-weight: 700;
     line-height: 1.2;
   }
 
   h1 {
-    font-size: 1.875rem;
+    font-size: 2rem;
     margin: 1.5rem 0;
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     margin: 1.25rem 0;
   }
 
@@ -99,16 +152,61 @@ const { pageTitle, description = "Juan Jose Morales - Developer portfolio" } =
   }
 
   a {
-    color: rgb(var(--accent));
+    color: rgb(var(--primary));
     text-decoration: none;
   }
 
   a:hover {
     text-decoration: underline;
+    color: rgb(var(--primary-dark));
   }
 
   img {
     max-width: 100%;
     height: auto;
   }
+
+  /* Tailwind prose adjustments */
+  .prose-primary {
+    --tw-prose-links: rgb(var(--primary));
+    --tw-prose-invert-links: rgb(var(--primary-light));
+  }
+
+  /* Custom component styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-5 py-2 
+           text-base font-medium rounded-md text-white 
+           bg-gradient-to-r from-primary to-accent
+           hover:opacity-90;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-5 py-2 border 
+           border-gray-300 dark:border-gray-600 text-base font-medium 
+           rounded-md text-gray-700 dark:text-gray-200 bg-white 
+           dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700;
+  }
+  .badge {
+    @apply inline-block px-2 py-1 text-xs font-medium bg-primary-light bg-opacity-10
+           dark:bg-primary-light dark:bg-opacity-20 text-primary-dark dark:text-primary-light 
+           rounded;
+  }
 </style>
+
+<script>
+  // Add smooth transition to HTML element when toggling dark mode
+  document.addEventListener("astro:after-swap", () => {
+    // This runs after view transitions when page content is swapped
+    const theme =
+      localStorage.getItem("theme") ??
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  });
+</script>

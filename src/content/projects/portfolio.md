@@ -2,18 +2,18 @@
 title: "Portfolio Website"
 description: "A personal portfolio website built with Astro and Tailwind CSS."
 date: 2023-11-15
-thumbnail: "/images/projects/portfolio-thumb.jpg"
+thumbnail: "https://margaretmoon.com/wp-content/uploads/2016/03/lorem-ipsum.jpg"
 liveUrl: "https://starrk.dev"
 githubUrl: "https://github.com/mstarrk/portfolio"
 featured: true
 technologies: ["Astro", "Tailwind CSS", "JavaScript"]
 images: [
   {
-    url: "/images/projects/portfolio-1.jpg",
+    url: "https://i.blogs.es/83bdf1/loremeee/1366_2000.jpg",
     alt: "Portfolio homepage screenshot"
   },
   {
-    url: "/images/projects/portfolio-2.jpg",
+    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTki8U-118MN1jIlHqzkrB9ZOx0X-8KVYU5EQ&s",
     alt: "Portfolio projects page screenshot"
   }
 ]

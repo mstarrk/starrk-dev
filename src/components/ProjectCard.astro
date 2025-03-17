@@ -11,38 +11,40 @@ const { title, description, thumbnail, url, tags = [] } = Astro.props;
 ---
 
 <div class="project-card">
-  href={url}
-  class="block rounded-lg overflow-hidden bg-white dark:bg-gray-900 border border-gray-200
-  dark:border-gray-800" >
-  <div
-    class="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800"
+  <a
+    href={url}
+    class="block rounded-lg overflow-hidden bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800"
   >
-    <img
-      src={thumbnail}
-      alt={title}
-      class="w-full h-full object-cover hover-zoom"
-    />
-  </div>
-
-  <div class="p-5">
-    <h3
-      class="font-bold text-lg mb-2 text-gray-900 dark:text-white group-hover:text-primary transition-colors"
+    <div
+      class="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800"
     >
-      {title}
-    </h3>
+      <img
+        src={thumbnail}
+        alt={title}
+        class="w-full h-full object-cover hover-zoom"
+      />
+    </div>
 
-    <p class="text-gray-700 dark:text-gray-300 text-sm mb-4">
-      {description}
-    </p>
+    <div class="p-5">
+      <h3
+        class="font-bold text-lg mb-2 text-gray-900 dark:text-white group-hover:text-primary transition-colors"
+      >
+        {title}
+      </h3>
 
-    {
-      tags.length > 0 && (
-        <div class="flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <span class="badge">{tag}</span>
-          ))}
-        </div>
-      )
-    }
-  </div>
+      <p class="text-gray-700 dark:text-gray-300 text-sm mb-4">
+        {description}
+      </p>
+
+      {
+        tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="badge">{tag}</span>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </a>
 </div>

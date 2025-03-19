@@ -1,7 +1,8 @@
 ---
+// Navbar.astro
 import ThemeIcon from "./ThemeIcon.astro";
 
-// Define the navigation items
+// Navigation items
 const navItems = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
@@ -11,13 +12,13 @@ const navItems = [
   { label: "Contact", path: "/contact" },
 ];
 
-// Get the current path
 const currentPath = Astro.url.pathname;
 ---
 
 <header class="py-5">
   <nav class="flex items-center justify-between">
-    <a href="/" class="logo font-bold text-xl inline-flex items-center">
+    <!-- Logo -->
+    <a href="/" class="logo font-bold text-xl">
       <span
         class="text-transparent bg-clip-text bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))]"
       >
@@ -25,6 +26,7 @@ const currentPath = Astro.url.pathname;
       </span>
     </a>
 
+    <!-- Desktop Nav Links -->
     <div class="hidden md:flex items-center space-x-6">
       {
         navItems.map((item) => (
@@ -36,15 +38,17 @@ const currentPath = Astro.url.pathname;
           </a>
         ))
       }
-      <ThemeIcon />
     </div>
 
-    <!-- Mobile menu button -->
-    <div class="md:hidden flex items-center">
+    <!-- Right-side buttons (theme toggle + hamburger) -->
+    <div class="flex items-center space-x-4">
+      <!-- Single ThemeIcon (ALWAYS visible) -->
       <ThemeIcon />
+
+      <!-- Hamburger (ONLY visible on mobile) -->
       <button
         id="menu-toggle"
-        class="ml-4 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+        class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +67,7 @@ const currentPath = Astro.url.pathname;
     </div>
   </nav>
 
-  <!-- Mobile menu -->
+  <!-- Mobile Menu (hidden by default on mobile) -->
   <div id="mobile-menu" class="hidden mt-4 md:hidden">
     <div class="flex flex-col space-y-3 py-3">
       {
@@ -88,13 +92,11 @@ const currentPath = Astro.url.pathname;
     position: relative;
     transition: color 0.2s ease;
   }
-
   .nav-link:hover,
   .nav-link.active {
     color: rgb(var(--primary));
     text-decoration: none;
   }
-
   .nav-link::after {
     content: "";
     position: absolute;
@@ -109,7 +111,6 @@ const currentPath = Astro.url.pathname;
     );
     transition: all 0.3s ease;
   }
-
   .nav-link:hover::after,
   .nav-link.active::after {
     width: 80%;
@@ -123,7 +124,6 @@ const currentPath = Astro.url.pathname;
     border-bottom: 1px solid rgba(var(--border-color), 0.5);
     transition: color 0.2s ease;
   }
-
   .mobile-nav-link:hover,
   .mobile-nav-link.active {
     color: rgb(var(--primary));
@@ -132,44 +132,36 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
-  // Function that sets up the mobile menu
+  // One script that toggles the mobile menu open/close
   function setupMobileMenu() {
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
 
     if (menuToggle && mobileMenu) {
-      // Remove any existing event listeners by cloning
-      const newMenuToggle = menuToggle.cloneNode(true);
-      if (menuToggle.parentNode) {
-        menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
-      }
+      // Remove any leftover events
+      menuToggle.onclick = null;
 
-      // Add click event to the new toggle button
-      newMenuToggle.addEventListener("click", () => {
+      menuToggle.addEventListener("click", (event) => {
+        event.stopPropagation();
+        // Toggle the hidden class
         mobileMenu.classList.toggle("hidden");
       });
 
-      // Handle clicks outside the menu (use capture phase to ensure it runs first)
-      document.addEventListener(
-        "click",
-        (event) => {
-          if (
-            mobileMenu &&
-            !mobileMenu.classList.contains("hidden") &&
-            !mobileMenu.contains(event.target) &&
-            !newMenuToggle.contains(event.target)
-          ) {
-            mobileMenu.classList.add("hidden");
-          }
-        },
-        { capture: true }
-      );
+      // Close menu if you click outside it
+      document.addEventListener("click", (event) => {
+        const clickOutside =
+          !mobileMenu.contains(event.target as HTMLElement) &&
+          !menuToggle.contains(event.target as HTMLElement);
+        if (!mobileMenu.classList.contains("hidden") && clickOutside) {
+          mobileMenu.classList.add("hidden");
+        }
+      });
     }
   }
 
-  // Run on initial page load
+  // Initialize on page load
   setupMobileMenu();
 
-  // Also run after each navigation
+  // Re-run if you’re using astro:page-load for client-side navigation
   document.addEventListener("astro:page-load", setupMobileMenu);
 </script>

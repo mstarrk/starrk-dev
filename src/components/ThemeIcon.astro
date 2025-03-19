@@ -39,21 +39,8 @@
   </div>
 </button>
 
-<script is:inline>
-  // Initialize theme on page load
-  const initializeTheme = () => {
-    const theme =
-      localStorage.getItem("theme") ??
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
-
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-
+<script>
+  function setupThemeToggle() {
     const themeToggle = document.getElementById("themeToggle");
 
     if (themeToggle) {
@@ -74,13 +61,11 @@
         }, 500);
       });
     }
-  };
+  }
 
-  // Run on initial load
-  initializeTheme();
-
-  // Run after page transitions
-  document.addEventListener("astro:page-load", initializeTheme);
+  // Run on initial page load and after each navigation
+  document.addEventListener("astro:after-swap", setupThemeToggle);
+  setupThemeToggle();
 </script>
 
 <style is:global>

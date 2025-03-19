@@ -1,7 +1,7 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   pageTitle: string;
@@ -57,7 +57,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     />
 
     <!-- View Transitions for smooth page loads -->
-    <ViewTransitions />
+    <ClientRouter />
+
+    <script is:inline>
+      // This script runs immediately on page load, before any rendering
+      const theme =
+        localStorage.getItem("theme") ??
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
   </head>
   <body>
     <div class="container mx-auto max-w-4xl px-4 sm:px-6 md:px-8">

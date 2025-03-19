@@ -132,34 +132,44 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
-  // Execute this code on every page navigation
-  function setupMenuHandlers() {
+  // Function that sets up the mobile menu
+  function setupMobileMenu() {
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
 
     if (menuToggle && mobileMenu) {
-      menuToggle.addEventListener("click", () => {
+      // Remove any existing event listeners by cloning
+      const newMenuToggle = menuToggle.cloneNode(true);
+      if (menuToggle.parentNode) {
+        menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
+      }
+
+      // Add click event to the new toggle button
+      newMenuToggle.addEventListener("click", () => {
         mobileMenu.classList.toggle("hidden");
       });
 
-      // Close mobile menu when clicking outside
-      document.addEventListener("click", (event) => {
-        const target = event.target as HTMLElement;
-        if (
-          mobileMenu &&
-          !mobileMenu.classList.contains("hidden") &&
-          !mobileMenu.contains(target) &&
-          !menuToggle.contains(target)
-        ) {
-          mobileMenu.classList.add("hidden");
-        }
-      });
+      // Handle clicks outside the menu (use capture phase to ensure it runs first)
+      document.addEventListener(
+        "click",
+        (event) => {
+          if (
+            mobileMenu &&
+            !mobileMenu.classList.contains("hidden") &&
+            !mobileMenu.contains(event.target) &&
+            !newMenuToggle.contains(event.target)
+          ) {
+            mobileMenu.classList.add("hidden");
+          }
+        },
+        { capture: true }
+      );
     }
   }
 
-  // Run on initial load
-  setupMenuHandlers();
+  // Run on initial page load
+  setupMobileMenu();
 
-  // Run again after each navigation
-  document.addEventListener("astro:page-load", setupMenuHandlers);
+  // Also run after each navigation
+  document.addEventListener("astro:page-load", setupMobileMenu);
 </script>

@@ -7,6 +7,7 @@ const navItems = [
   { label: "About", path: "/about" },
   { label: "Works", path: "/works" },
   { label: "Blog", path: "/blog" },
+  { label: "Now", path: "/now" },
   { label: "Contact", path: "/contact" },
 ];
 
@@ -131,29 +132,34 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
-  // Mobile menu toggle
-  document.addEventListener("DOMContentLoaded", () => {
+  // Execute this code on every page navigation
+  function setupMenuHandlers() {
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
 
-    menuToggle?.addEventListener("click", () => {
-      mobileMenu?.classList.toggle("hidden");
-    });
-  });
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
 
-  // Close mobile menu when clicking outside
-  document.addEventListener("click", (event) => {
-    const mobileMenu = document.getElementById("mobile-menu");
-    const menuToggle = document.getElementById("menu-toggle");
-
-    if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
-      // @ts-ignore
-      if (
-        !mobileMenu.contains(event.target as Node) &&
-        !menuToggle?.contains(event.target as Node)
-      ) {
-        mobileMenu.classList.add("hidden");
-      }
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", (event) => {
+        const target = event.target as HTMLElement;
+        if (
+          mobileMenu &&
+          !mobileMenu.classList.contains("hidden") &&
+          !mobileMenu.contains(target) &&
+          !menuToggle.contains(target)
+        ) {
+          mobileMenu.classList.add("hidden");
+        }
+      });
     }
-  });
+  }
+
+  // Run on initial load
+  setupMenuHandlers();
+
+  // Run again after each navigation
+  document.addEventListener("astro:page-load", setupMenuHandlers);
 </script>

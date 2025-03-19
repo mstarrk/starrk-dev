@@ -40,26 +40,47 @@
 </button>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+  // Initialize theme on page load
+  const initializeTheme = () => {
+    const theme =
+      localStorage.getItem("theme") ??
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
     const themeToggle = document.getElementById("themeToggle");
 
-    themeToggle?.addEventListener("click", () => {
-      // Add animation class
-      document.documentElement.classList.add("theme-transition");
+    if (themeToggle) {
+      themeToggle.addEventListener("click", () => {
+        // Add animation class
+        document.documentElement.classList.add("theme-transition");
 
-      // Toggle dark mode
-      document.documentElement.classList.toggle("dark");
+        // Toggle dark mode
+        document.documentElement.classList.toggle("dark");
 
-      // Store preference
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
+        // Store preference
+        const isDark = document.documentElement.classList.contains("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
 
-      // Remove animation class after transition completes
-      setTimeout(() => {
-        document.documentElement.classList.remove("theme-transition");
-      }, 500);
-    });
-  });
+        // Remove animation class after transition completes
+        setTimeout(() => {
+          document.documentElement.classList.remove("theme-transition");
+        }, 500);
+      });
+    }
+  };
+
+  // Run on initial load
+  initializeTheme();
+
+  // Run after page transitions
+  document.addEventListener("astro:page-load", initializeTheme);
 </script>
 
 <style is:global>

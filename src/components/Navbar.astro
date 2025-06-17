@@ -40,12 +40,12 @@ const currentPath = Astro.url.pathname;
       }
     </div>
 
-    <!-- Right-side buttons (theme toggle + hamburger) -->
+    <!-- Right-side buttons -->
     <div class="flex items-center space-x-4">
-      <!-- Single ThemeIcon (ALWAYS visible) -->
+      <!-- Single ThemeIcon -->
       <ThemeIcon />
 
-      <!-- Hamburger (ONLY visible on mobile) -->
+      <!-- Hamburger -->
       <button
         id="menu-toggle"
         class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
@@ -67,7 +67,7 @@ const currentPath = Astro.url.pathname;
     </div>
   </nav>
 
-  <!-- Mobile Menu (hidden by default on mobile) -->
+  <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden mt-4 md:hidden">
     <div class="flex flex-col space-y-3 py-3">
       {
@@ -132,36 +132,31 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
-  // One script that toggles the mobile menu open/close
+  // Toggles the mobile menu open/close
   function setupMobileMenu() {
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
 
-    if (menuToggle && mobileMenu) {
-      // Remove any leftover events
-      menuToggle.onclick = null;
-
-      menuToggle.addEventListener("click", (event) => {
-        event.stopPropagation();
-        // Toggle the hidden class
-        mobileMenu.classList.toggle("hidden");
-      });
-
-      // Close menu if you click outside it
-      document.addEventListener("click", (event) => {
-        const clickOutside =
-          !mobileMenu.contains(event.target as HTMLElement) &&
-          !menuToggle.contains(event.target as HTMLElement);
-        if (!mobileMenu.classList.contains("hidden") && clickOutside) {
-          mobileMenu.classList.add("hidden");
-        }
-      });
+    if (!menuToggle || !mobileMenu) {
+      return;
     }
+
+    menuToggle.onclick = (event) => {
+      event.stopPropagation();
+      mobileMenu.classList.toggle("hidden");
+    };
+
+    document.onclick = (event) => {
+      const target = event.target as HTMLElement;
+      const clickOutside =
+        !mobileMenu.contains(target) && !menuToggle.contains(target);
+      if (!mobileMenu.classList.contains("hidden") && clickOutside) {
+        mobileMenu.classList.add("hidden");
+      }
+    };
   }
 
   // Initialize on page load
   setupMobileMenu();
-
-  // Re-run if you’re using astro:page-load for client-side navigation
   document.addEventListener("astro:page-load", setupMobileMenu);
 </script>

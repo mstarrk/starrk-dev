@@ -44,7 +44,7 @@
     const themeToggle = document.getElementById("themeToggle");
 
     if (themeToggle) {
-      themeToggle.addEventListener("click", () => {
+      themeToggle.onclick = () => {
         // Add animation class
         document.documentElement.classList.add("theme-transition");
 
@@ -59,7 +59,7 @@
         setTimeout(() => {
           document.documentElement.classList.remove("theme-transition");
         }, 500);
-      });
+      };
     }
   }
 

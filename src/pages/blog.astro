@@ -55,6 +55,17 @@ const allPosts = await getCollection("blog");
                   {post.data.description}
                 </p>
 
+                <div class="flex flex-wrap gap-2 mt-4">
+                  {post.data.tags.map((tag: any) => (
+                    <a
+                      href={`/tags/${tag}`}
+                      class="inline-block px-2 py-1 text-xs font-medium bg-primary-light bg-opacity-10 dark:bg-primary-light dark:bg-opacity-20 text-primary-dark dark:text-primary-light rounded-full"
+                    >
+                      {tag}
+                    </a>
+                  ))}
+                </div>
+
                 <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-4">
                   <time datetime={post.data.pubDate.toISOString()}>
                     {new Date(post.data.pubDate).toLocaleDateString("en-US", {

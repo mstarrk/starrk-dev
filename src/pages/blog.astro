@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import { getReadingTime } from "../utils/reading-time";
 
 interface BlogPost {
   id: string;
@@ -77,6 +78,8 @@ const allPosts = (await getCollection("blog")).sort(
                       timeZone: "UTC",
                     })}
                   </time>
+                  <span class="mx-2">•</span>
+                  <span>{getReadingTime(post.body)} min read</span>
                   <span class="mx-2">•</span>
                   <span>{post.data.author}</span>
                 </div>

@@ -6,10 +6,10 @@ image:
     url: "https://erepa7ohg8r.exactdn.com/wp-content/uploads/2024/10/functional-cover.jpg"
     alt: "Some image."
 pubDate: 2025-06-26
-tags: ["blog", "portfolio", "development"]
+tags: ["typescript", "devlog", "astro"]
 ---
 
-# The Art of Writing Lorem Ipsum
+## The Art of Writing Lorem Ipsum
 
 Lorem ipsum dolor sit amet, **consectetur adipiscing elit**. Sed vitae malesuada nibh. Donec pretium *fringilla lorem*, sed placerat turpis fermentum vel. Vivamus tincidunt volutpat sapien, non dictum risus porttitor ut. Visit the [official site](https://example.com) for more info.
 

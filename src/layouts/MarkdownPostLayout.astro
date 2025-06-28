@@ -1,5 +1,6 @@
 ---
 import Layout from "./Layout.astro";
+import { getTagColor } from "../utils/tag-colors";
 
 const { frontmatter } = Astro.props;
 ---
@@ -73,7 +74,9 @@ const { frontmatter } = Astro.props;
           frontmatter.tags.map((tag: string) => (
             <a
               href={`/tags/${tag}`}
-              class="inline-block px-3 py-1 text-sm font-medium bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors"
+              class={`inline-block px-3 py-1 text-sm font-medium rounded-full hover:opacity-80 transition-opacity ${getTagColor(
+                tag
+              )}`}
             >
               #{tag}
             </a>

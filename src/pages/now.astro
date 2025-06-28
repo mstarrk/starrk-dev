@@ -1,6 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import NowProfileBox from "../components/NowProfileBox.astro";
+import FocusAreas from "../components/FocusAreas.astro";
+import NowFooter from "../components/NowFooter.astro";
 
 const nowEntries = await getCollection("now");
 const latestEntry = nowEntries.sort(
@@ -17,80 +20,8 @@ const { title, lastUpdated, intro, mood, focusAreas } = latestEntry.data;
   description="What I'm currently focused on and working with"
 >
   <div class="max-w-3xl mx-auto">
-    <header class="py-8">
-      <h1 class="text-3xl font-bold mb-4">Now</h1>
-      <p class="text-lg text-gray-600 dark:text-gray-300">
-        {intro}
-      </p>
-      <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-        Mood: {mood}
-      </p>
-      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-        🕒 Last updated: {/* Placeholder */}
-      </p>
-    </header>
-
-    <div class="space-y-10">
-      {
-        focusAreas.map((area) => (
-          <section>
-            <h2 class="text-2xl font-bold mb-4 inline-flex items-center">
-              <span>{area.title}</span>
-              <div class="h-1 w-10 bg-primary rounded ml-2" />
-            </h2>
-
-            <ul class="space-y-3">
-              {area.items.map((item) => (
-                <li class="flex items-start">
-                  <span class="inline-block w-5 h-5 mt-0.5 mr-3 flex-shrink-0 text-primary">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))
-      }
-    </div>
-
-    <div
-      class="mt-12 p-6 bg-gradient-to-br from-primary-light to-accent-light bg-opacity-10 dark:from-primary-light dark:to-accent-light dark:bg-opacity-5 rounded-lg border border-primary-light border-opacity-20 dark:border-primary-light dark:border-opacity-10"
-    >
-      <h3 class="text-xl font-semibold mb-3">Let's Connect</h3>
-      <p class="mb-4">
-        If you're working on something interesting or have a project in mind,
-        I'd love to hear about it!
-      </p>
-      <a
-        href="/contact"
-        class="btn-primary inline-flex transition-all duration-300 hover:scale-105"
-      >
-        Get in Touch
-      </a>
-    </div>
-
-    <div class="mt-8 text-xs text-gray-500 dark:text-gray-400">
-      <p>
-        Inspired by <a
-          href="https://nownownow.com/about"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline">the /now page movement</a
-        > — a small tradition of sharing what you're focused on at the moment.
-      </p>
-    </div>
+    <NowProfileBox {intro} {mood} {lastUpdated} />
+    <FocusAreas {focusAreas} />
+    <NowFooter />
   </div>
 </Layout>

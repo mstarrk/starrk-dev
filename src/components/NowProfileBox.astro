@@ -1,0 +1,26 @@
+---
+import ProfilePicture from "./ProfilePicture.astro";
+
+const { intro, mood, lastUpdated } = Astro.props;
+
+const [y, m, d] = lastUpdated.split("-").map(Number);
+const formattedDate = new Date(y, m - 1, d).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<div class="flex items-center space-x-6 mb-8">
+  <ProfilePicture size={96} />
+  <div>
+    <p class="text-lg text-gray-600 dark:text-gray-300">{intro}</p>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+      Last updated: {formattedDate}
+    </p>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Mood: {mood}</p>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+      Now Playing: (placeholder)
+    </p>
+  </div>
+</div>

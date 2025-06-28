@@ -1,61 +1,34 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 
-const pageTitle = "Now";
-const lastUpdated = "March 15, 2025";
+const nowEntries = await getCollection("now");
+const latestEntry = nowEntries.sort(
+  (a, b) =>
+    new Date(b.data.lastUpdated).valueOf() -
+    new Date(a.data.lastUpdated).valueOf()
+)[0];
 
-// Current focus areas
-const focusAreas = [
-  {
-    title: "Development",
-    items: [
-      "Learning Astro for static site generation",
-      "Exploring Rust for system programming",
-      "Contributing to open-source projects",
-    ],
-  },
-  {
-    title: "Reading",
-    items: [
-      '"The Pragmatic Programmer" by Andy Hunt and Dave Thomas',
-      '"Designing Data-Intensive Applications" by Martin Kleppmann',
-    ],
-  },
-  {
-    title: "Personal",
-    items: [
-      "Building my home studio for music production",
-      "Learning digital illustration",
-      "Daily meditation practice",
-    ],
-  },
-];
+const { title, lastUpdated, intro, mood, focusAreas } = latestEntry.data;
 ---
 
 <Layout
-  pageTitle={pageTitle}
+  pageTitle={title}
   description="What I'm currently focused on and working with"
 >
   <div class="max-w-3xl mx-auto">
     <header class="py-8">
       <h1 class="text-3xl font-bold mb-4">Now</h1>
       <p class="text-lg text-gray-600 dark:text-gray-300">
-        What I'm currently focused on and working with.
+        {intro}
       </p>
       <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-        Last updated: {lastUpdated}
+        Mood: {mood}
+      </p>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+        🕒 Last updated: {/* Placeholder */}
       </p>
     </header>
-
-    <div class="prose prose-lg dark:prose-invert prose-primary max-w-none mb-8">
-      <p>
-        Inspired by <a
-          href="https://nownownow.com/about"
-          target="_blank"
-          rel="noopener noreferrer">the /now page movement</a
-        >, this page reflects what I'm currently focusing my time and energy on.
-      </p>
-    </div>
 
     <div class="space-y-10">
       {
@@ -107,6 +80,17 @@ const focusAreas = [
       >
         Get in Touch
       </a>
+    </div>
+
+    <div class="mt-8 text-xs text-gray-500 dark:text-gray-400">
+      <p>
+        Inspired by <a
+          href="https://nownownow.com/about"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline">the /now page movement</a
+        > — a small tradition of sharing what you're focused on at the moment.
+      </p>
     </div>
   </div>
 </Layout>

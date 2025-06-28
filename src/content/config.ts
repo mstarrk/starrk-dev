@@ -34,4 +34,18 @@ export const collections = {
         .optional(),
     }),
   }),
+  now: defineCollection({
+    schema: z.object({
+      title: z.string(),
+      lastUpdated: z.string(),
+      mood: z.string().optional(),
+      intro: z.string(),
+      focusAreas: z.array(
+        z.object({
+          title: z.string(),
+          items: z.array(z.string()),
+        })
+      ),
+    }),
+  }),
 };

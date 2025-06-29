@@ -1,5 +1,6 @@
 ---
 import ProfilePicture from "./ProfilePicture.astro";
+import SpotifyNowPlaying from "./SpotifyNowPlaying.tsx";
 
 const { intro, mood, lastUpdated } = Astro.props;
 
@@ -19,8 +20,6 @@ const formattedDate = new Date(y, m - 1, d).toLocaleDateString("en-US", {
       Last updated: {formattedDate}
     </p>
     <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Mood: {mood}</p>
-    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-      Now Playing: (placeholder)
-    </p>
+    <SpotifyNowPlaying client:visible />
   </div>
 </div>

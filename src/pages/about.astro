@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import SkillsSection from "../components/sections/SkillsSection.astro";
+import PageHeader from "../components/ui/PageHeader.astro";
 
 const pageTitle = "About Me";
 ---
@@ -10,12 +11,10 @@ const pageTitle = "About Me";
   description="Learn more about Juan Jose Morales - my background, skills, and experience as a developer."
 >
   <div class="max-w-3xl mx-auto">
-    <header class="py-8">
-      <h1 class="text-3xl font-bold mb-4">About Me</h1>
-      <p class="text-lg text-gray-600 dark:text-gray-300">
-        My journey, skills, and what I'm passionate about.
-      </p>
-    </header>
+    <PageHeader
+      title="About Me"
+      subtitle="My journey, skills, and what I'm passionate about."
+    />
 
     <div
       class="prose prose-lg dark:prose-invert prose-primary max-w-none mb-10"

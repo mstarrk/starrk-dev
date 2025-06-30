@@ -1,19 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProjectsSection from "../components/sections/ProjectsSection.astro";
+import PageHeader from "../components/ui/PageHeader.astro";
 
 const pageTitle = "Works";
 ---
 
 <Layout pageTitle={pageTitle}>
   <div class="max-w-3xl mx-auto">
-    <header class="py-8">
-      <h1 class="text-3xl font-bold mb-4">Works</h1>
-      <p class="text-lg text-gray-600 dark:text-gray-300">
-        A selection of projects. Each project represents a unique challenge and
-        learning experience.
-      </p>
-    </header>
+    <PageHeader
+      title="Works"
+      subtitle="A selection of projects. Each project represents a unique challenge and learning experience."
+    />
 
     <ProjectsSection />
   </div>

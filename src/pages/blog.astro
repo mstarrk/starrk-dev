@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import { getReadingTime } from "../utils/reading-time";
 import { getTagColor } from "../utils/tag-colors";
+import PageHeader from "../components/ui/PageHeader.astro";
 
 interface BlogPost {
   id: string;
@@ -27,13 +28,10 @@ const allPosts = (await getCollection("blog")).sort(
 
 <Layout pageTitle={pageTitle}>
   <div class="max-w-6xl mx-auto">
-    <header class="py-8 text-center">
-      <h1 class="text-4xl font-bold mb-2">Blog</h1>
-      <p class="text-lg text-gray-600 dark:text-gray-300">
-        A place for my notes, experiments, and thoughts on coding, music, and
-        games.
-      </p>
-    </header>
+    <PageHeader
+      title="Blog"
+      subtitle="A place for my notes, experiments, and thoughts on coding, music, and games."
+    />
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {

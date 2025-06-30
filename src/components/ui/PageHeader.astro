@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<header class="py-8">
+  <h1 class="text-3xl font-bold mb-4">{title}</h1>
+  <p class="text-lg text-gray-600 dark:text-gray-300">{subtitle}</p>
+</header>

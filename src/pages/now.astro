@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import NowProfileBox from "../components/NowProfileBox.astro";
-import FocusAreas from "../components/FocusAreas.astro";
-import NowFooter from "../components/NowFooter.astro";
-import SpotifyTopArtists from "../components/SpotifyTopArtists.tsx";
+import NowProfileBox from "../components/now/NowProfileBox.astro";
+import FocusAreas from "../components/now/FocusAreas.astro";
+import NowFooter from "../components/now/NowFooter.astro";
+import SpotifyTopArtists from "../components/spotify/SpotifyTopArtists.tsx";
 
 const nowEntries = await getCollection("now");
 const latestEntry = nowEntries.sort(

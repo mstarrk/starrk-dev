@@ -1,6 +1,6 @@
 ---
 import Layout from "./Layout.astro";
-import { getTagColor } from "../utils/tag-colors";
+import TagBadge from "../components/ui/TagBadge.astro";
 
 const { frontmatter } = Astro.props;
 ---
@@ -70,18 +70,9 @@ const { frontmatter } = Astro.props;
     <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
       <h3 class="text-lg font-semibold mb-4">Tags</h3>
       <div class="flex flex-wrap gap-2">
-        {
-          frontmatter.tags.map((tag: string) => (
-            <a
-              href={`/tags/${tag}`}
-              class={`inline-block px-3 py-1 text-sm font-medium rounded-full hover:opacity-80 transition-opacity ${getTagColor(
-                tag
-              )}`}
-            >
-              #{tag}
-            </a>
-          ))
-        }
+        {frontmatter.tags.map((tag: string) => (
+          <TagBadge {tag} />
+        ))}
       </div>
     </div>
   </article>

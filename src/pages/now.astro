@@ -21,7 +21,7 @@ const { title, lastUpdated, intro, mood, focusAreas } = latestEntry.data;
   description="What I'm currently focused on and working with"
 >
   <div class="max-w-3xl mx-auto">
-    <NowProfileBox {intro} {mood} {lastUpdated} />
+    <NowProfileBox {intro} {mood} />
     <FocusAreas {focusAreas} />
     <SpotifyTopArtists client:visible />
     <NowFooter />

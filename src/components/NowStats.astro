@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+
+const nowEntries = await getCollection("now");
+const totalEntries = nowEntries.length;
+
+const latestEntry = nowEntries.sort((a, b) => {
+  return (
+    new Date(b.data.lastUpdated).getTime() -
+    new Date(a.data.lastUpdated).getTime()
+  );
+})[0];
+
+const [y, m, d] = latestEntry.data.lastUpdated.split("-").map(Number);
+const formattedDate = new Date(y, m - 1, d).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const today = new Date();
+const lastUpdatedDate = new Date(y, m - 1, d);
+const daysSinceLastUpdate = Math.floor(
+  (today.getTime() - lastUpdatedDate.getTime()) / (1000 * 60 * 60 * 24)
+);
+---
+
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+  🕒 This is entry #{totalEntries} — created {formattedDate}
+</p>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+  (A total of {totalEntries} entries logged since launch.)
+</p>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+  It's been {daysSinceLastUpdate} days since this was last updated.
+</p>

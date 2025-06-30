@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import NowProfileBox from "../components/NowProfileBox.astro";
 import FocusAreas from "../components/FocusAreas.astro";
 import NowFooter from "../components/NowFooter.astro";
+import SpotifyTopArtists from "../components/SpotifyTopArtists.tsx";
 
 const nowEntries = await getCollection("now");
 const latestEntry = nowEntries.sort(
@@ -22,6 +23,7 @@ const { title, lastUpdated, intro, mood, focusAreas } = latestEntry.data;
   <div class="max-w-3xl mx-auto">
     <NowProfileBox {intro} {mood} {lastUpdated} />
     <FocusAreas {focusAreas} />
+    <SpotifyTopArtists client:visible />
     <NowFooter />
   </div>
 </Layout>

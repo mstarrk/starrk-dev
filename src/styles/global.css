@@ -1,215 +1,120 @@
-html,
-body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
+:root {
+  /* Primary and accent colors defined for CSS variables */
+  --primary-light-rgb: 125, 96, 255;
+  --primary-rgb: 86, 63, 211;
+  --primary-dark-rgb: 54, 38, 145;
+
+  --accent-light-rgb: 255, 106, 151;
+  --accent-rgb: 240, 65, 116;
+  --accent-dark-rgb: 186, 35, 79;
+
+  /* UI Colors - Light Theme */
+  --bg-color: 251, 252, 254;
+  --card-bg: 255, 255, 255;
+  --text-color: 45, 55, 72;
+  --heading-color: 26, 32, 44;
+  --border-color: 226, 232, 240;
+
+  /* Gradient */
+  --gradient: linear-gradient(
+    135deg,
+    rgb(var(--primary)),
+    rgb(var(--accent))
+  );
+
+  /* Typography */
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-heading: "Outfit", system-ui, sans-serif;
 }
 
 html.dark {
-  background-color: #08080c;
-  color: #fff;
+  /* UI Colors - Dark Theme */
+  --bg-color: 15, 23, 42;
+  --card-bg: 30, 41, 59;
+  --text-color: 226, 232, 240;
+  --heading-color: 248, 250, 252;
+  --border-color: 51, 65, 85;
 }
 
-.dark .nav-links a {
-  color: #fff;
+html {
+  font-family: var(--font-body);
+  background-color: rgb(var(--bg-color));
+  color: rgb(var(--text-color));
+  scroll-behavior: smooth;
 }
 
-*,
-*::before,
-*::after {
-  transition: background-color 0.3s ease, border-color 0.3s ease,
-    color 0.2s ease;
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: rgb(var(--bg-color));
+  color: rgb(var(--text-color));
 }
 
-#background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  filter: blur(100px);
-}
-
-#container {
-  font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
-    Arial, sans-serif;
-  height: 100%;
-}
-
-main {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-#hero {
-  display: flex;
-  align-items: start;
-  flex-direction: column;
-  justify-content: center;
-  padding: 16px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: rgb(var(--heading-color));
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 h1 {
-  font-size: 22px;
-  margin-top: 0.25em;
-}
-
-#links {
-  display: flex;
-  gap: 16px;
-}
-
-#links a {
-  display: flex;
-  align-items: center;
-  padding: 10px 12px;
-  color: #111827;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-#links a:hover {
-  color: rgb(78, 80, 86);
-}
-
-#links a svg {
-  height: 1em;
-  margin-left: 8px;
-}
-
-#links a.button {
-  color: white;
-  background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-  border-radius: 10px;
-}
-
-#links a.button:hover {
-  color: rgb(230, 230, 230);
-  box-shadow: none;
-}
-
-pre {
-  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
-    "DejaVu Sans Mono", monospace;
-  font-weight: normal;
-  background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0;
+  font-size: 2rem;
+  margin: 1.5rem 0;
 }
 
 h2 {
-  margin: 0 0 1em;
-  font-weight: normal;
-  color: #111827;
-  font-size: 20px;
+  font-size: 1.75rem;
+  margin: 1.25rem 0;
 }
 
 p {
-  color: #4b5563;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.006em;
-  margin: 0;
+  margin: 1rem 0;
+  line-height: 1.6;
 }
 
-code {
-  display: inline-block;
-  background: linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-    linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 6px 8px;
-}
-
-.box {
-  padding: 16px;
-  background: rgba(255, 255, 255, 1);
-  border-radius: 16px;
-  border: 1px solid white;
-}
-
-#news {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  max-width: 300px;
+a {
+  color: rgb(var(--primary));
   text-decoration: none;
-  transition: background 0.2s;
-  backdrop-filter: blur(50px);
 }
 
-#news:hover {
-  background: rgba(255, 255, 255, 0.55);
+a:hover {
+  text-decoration: underline;
+  color: rgb(var(--primary-dark));
 }
 
-@media screen and (max-height: 368px) {
-  #news {
-    display: none;
-  }
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-@media screen and (max-width: 768px) {
-  #container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  #hero {
-    display: block;
-    padding-top: 10%;
-  }
-
-  #links {
-    flex-wrap: wrap;
-  }
-
-  #links a.button {
-    padding: 14px 18px;
-  }
-
-  #news {
-    right: 16px;
-    left: 16px;
-    bottom: 2.5rem;
-    max-width: 100%;
-  }
-
-  h1 {
-    line-height: 1.5;
-  }
+/* Tailwind prose adjustments */
+.prose-primary {
+  --tw-prose-links: rgb(var(--primary));
+  --tw-prose-invert-links: rgb(var(--primary-light));
 }
 
+/* Custom component styles */
 .btn-primary {
-  @apply inline-flex items-center justify-center px-5 py-2 border border-transparent 
-         text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark
-         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary
-         transition-all duration-300;
+  @apply inline-flex items-center justify-center px-5 py-2 
+         text-base font-medium rounded-md text-white 
+         bg-gradient-to-r from-primary to-accent
+         hover:opacity-90;
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center px-5 py-2 border border-gray-300 
-         dark:border-gray-600 text-base font-medium rounded-md text-gray-700 
-         dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 
-         dark:hover:bg-gray-700 transition-all duration-300;
+  @apply inline-flex items-center justify-center px-5 py-2 border 
+         border-gray-300 dark:border-gray-600 text-base font-medium 
+         rounded-md text-gray-700 dark:text-gray-200 bg-white 
+         dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700;
 }
-
 .badge {
-  @apply inline-block px-2 py-1 text-xs font-medium bg-primary-light/20 
-         dark:bg-primary-dark/30 text-primary-dark dark:text-primary-light 
-         rounded transition-colors duration-300;
-}
-
-.project-card {
-  @apply transition-all duration-300 hover:shadow-lg dark:hover:shadow-gray-800/50 
-         hover:translate-y-[-4px];
-}
-
-.hover-zoom {
-  @apply transition-transform duration-300 hover:scale-105;
+  @apply inline-block px-2 py-1 text-xs font-medium bg-primary-light bg-opacity-10
+       dark:bg-primary-light dark:bg-opacity-20 text-primary-dark dark:text-primary-light 
+       rounded;
 }

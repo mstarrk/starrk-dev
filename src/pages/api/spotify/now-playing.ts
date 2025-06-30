@@ -29,7 +29,7 @@ export const GET: APIRoute = async () => {
   }
 
   const title = item.name;
-  const artist = item.artists.map((a) => a.name).join(", ");
+  const artist = item.artists.map((a: { name: string }) => a.name).join(", ");
   const album = item.album.name;
   const albumImageUrl = item.album.images[0].url;
   const songUrl = item.external_urls.spotify;

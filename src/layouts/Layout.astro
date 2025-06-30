@@ -208,9 +208,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 </style>
 
 <script>
-  // Add smooth transition to HTML element when toggling dark mode
   document.addEventListener("astro:after-swap", () => {
-    // This runs after view transitions when page content is swapped
     const theme =
       localStorage.getItem("theme") ??
       (window.matchMedia("(prefers-color-scheme: dark)").matches

@@ -14,7 +14,6 @@ html.dark {
   color: #fff;
 }
 
-/* Add these to your global CSS */
 *,
 *::before,
 *::after {
@@ -186,7 +185,6 @@ code {
   }
 }
 
-/* Button styles with animations */
 .btn-primary {
   @apply inline-flex items-center justify-center px-5 py-2 border border-transparent 
          text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark
@@ -207,13 +205,11 @@ code {
          rounded transition-colors duration-300;
 }
 
-/* Card hover animations */
 .project-card {
   @apply transition-all duration-300 hover:shadow-lg dark:hover:shadow-gray-800/50 
          hover:translate-y-[-4px];
 }
 
-/* Image hover animations */
 .hover-zoom {
   @apply transition-transform duration-300 hover:scale-105;
 }

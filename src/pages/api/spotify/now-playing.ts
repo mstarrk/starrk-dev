@@ -15,9 +15,6 @@ export const GET: APIRoute = async () => {
 
   const song = await response.json();
 
-  // Log the raw API response
-  console.log("Spotify API response:", song);
-
   const isPlaying = song.is_playing;
   const item = song.item;
 

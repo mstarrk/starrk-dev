@@ -4,6 +4,7 @@ import ProfileSection from "../components/sections/ProfileSection.astro";
 import ProjectsSection from "../components/sections/ProjectsSection.astro";
 import GithubActivity from "../components/sections/GithubActivity.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
+import ButtonLink from "../components/ui/ButtonLink.astro";
 
 const pageTitle = "Juan Jose Morales - Full Stack Developer";
 ---
@@ -18,12 +19,7 @@ const pageTitle = "Juan Jose Morales - Full Stack Developer";
       <SectionHeading title="Featured Projects" />
       <ProjectsSection featured={true} limit={3} />
       <div class="flex justify-center mt-8">
-        <a
-          href="/works"
-          class="btn-primary transition-all duration-300 hover:scale-105"
-        >
-          View All Projects
-        </a>
+        <ButtonLink href="/works">View All Projects</ButtonLink>
       </div>
     </div>
     <GithubActivity />

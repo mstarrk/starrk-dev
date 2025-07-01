@@ -1,5 +1,6 @@
 ---
 import SectionHeading from "../ui/SectionHeading.astro";
+import ButtonLink from "../ui/ButtonLink.astro";
 
 const recentActivities = [
   {
@@ -75,14 +76,14 @@ const recentActivities = [
     </ul>
 
     <div class="mt-6 text-center">
-      <a
+      <ButtonLink
         href="https://github.com/mstarrk"
+        variant="secondary"
         target="_blank"
         rel="noopener noreferrer"
-        class="btn-secondary transition-all duration-300 hover:scale-105"
       >
         View GitHub Profile
-      </a>
+      </ButtonLink>
     </div>
   </div>
 </section>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "preact/hooks";
+import { useSpotifyData } from "./useSpotifyData";
 
 type NowPlayingData = {
   isPlaying: boolean;
@@ -10,39 +10,15 @@ type NowPlayingData = {
 };
 
 export default function SpotifyNowPlaying() {
-  const [data, setData] = useState<NowPlayingData | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchNowPlaying() {
-      try {
-        const response = await fetch("/api/spotify/now-playing");
-        const result = await response.json();
-        console.log("Now Playing API result:", result);
-
-        setData(result);
-      } catch (error) {
-        console.error("Error fetching Now Playing data:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchNowPlaying();
-  }, []);
+  const { data, loading, error } =
+    useSpotifyData<NowPlayingData>("now-playing");
 
   if (loading) {
-    return <div style={{ visibility: "hidden" }} />;
+    return <div />;
   }
 
-  if (!data) return null;
-
-  if (!data.isPlaying) {
-    return (
-      <p class="text-sm text-gray-500 dark:text-gray-400">
-        Not currently playing anything.
-      </p>
-    );
+  if (error || !data || !data.isPlaying) {
+    return null;
   }
 
   return (

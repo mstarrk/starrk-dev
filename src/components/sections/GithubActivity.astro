@@ -1,5 +1,6 @@
 ---
-// This is a simple version - in production you might fetch data from GitHub API
+import SectionHeading from "../ui/SectionHeading.astro";
+
 const recentActivities = [
   {
     repo: "mstarrk/portfolio",
@@ -23,10 +24,7 @@ const recentActivities = [
 ---
 
 <section class="py-8">
-  <h2 class="text-2xl font-bold mb-6 inline-flex items-center">
-    <span>GitHub Activity</span>
-    <div class="h-1 w-16 bg-primary rounded ml-2"></div>
-  </h2>
+  <SectionHeading title="GitHub Activity" />
 
   <div
     class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6"

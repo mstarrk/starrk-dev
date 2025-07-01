@@ -1,20 +1,17 @@
 ---
+import SectionHeading from "../ui/SectionHeading.astro";
+
 const { focusAreas } = Astro.props;
 ---
 
 <section aria-labelledby="focus-heading" class="mt-10">
-  <h1 class="text-2xl font-bold text-gray-300 dark:text-gray-200 mb-6">
-    Currently Focusing On
-  </h1>
+  <SectionHeading title="Currently Focusing On" level="h1" />
 
   <div class="space-y-10">
     {
       focusAreas.map((area: { title: string; items: string[] }) => (
         <section>
-          <h3 class="text-xl font-semibold mb-4 inline-flex items-center">
-            <span>{area.title}</span>
-            <div class="h-1 w-10 bg-primary rounded ml-2" />
-          </h3>
+          <SectionHeading title={area.title} level="h3" />
 
           <ul class="space-y-3">
             {area.items.map((item: string) => (

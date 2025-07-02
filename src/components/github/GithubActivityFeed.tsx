@@ -40,18 +40,23 @@ export default function GithubActivityFeed() {
               {event.actor.display_login}
             </a>{" "}
             {event.type === "PushEvent" && (
-              <>
-                pushed to{" "}
-                <a
-                  href={`https://github.com/${event.repo.name}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-blue-400 hover:underline"
-                >
-                  {event.repo.name}
-                </a>
-              </>
-            )}
+                <>
+                  pushed to{" "}
+                  <a
+                    href={`https://github.com/${event.repo.name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-blue-400 hover:underline"
+                  >
+                    {event.repo.name}
+                  </a>
+                  {event.payload.commits && event.payload.commits.length > 0 && (
+                    <p class="text-sm text-gray-500 mt-1">
+                      {event.payload.commits[0].message}
+                    </p>
+                  )}
+                </>
+              )}
             {event.type === "CreateEvent" &&
               event.payload.ref_type === "repository" && (
                 <>

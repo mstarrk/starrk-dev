@@ -41,7 +41,7 @@ export default function SpotifyNowPlaying() {
         />
         <div>
           <p class="font-semibold leading-tight text-white">{data.title}</p>
-          <p class="text-sm text-white dark:text-gray-400">{data.artist}</p>
+          <p class="text-sm text-gray-400">{data.artist}</p>
         </div>
       </a>
     </div>

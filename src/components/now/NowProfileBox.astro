@@ -7,10 +7,10 @@ const { intro, mood } = Astro.props;
 ---
 
 <div class="relative p-6 mb-8 rounded-lg shadow-xl overflow-hidden
-             bg-gradient-to-br from-purple-600 to-blue-500 dark:from-gray-700 dark:to-gray-900">
+             bg-gradient-to-br from-gray-700 to-gray-900">
   <div class="flex flex-col items-center text-center mb-6">
     <ProfilePicture size={128} class="mb-4" />
-    <p class="text-xl font-semibold text-white dark:text-gray-100">{intro}</p>
+    <p class="text-xl font-semibold text-gray-100">{intro}</p>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -18,7 +18,7 @@ const { intro, mood } = Astro.props;
       <NowStats />
     </div>
     <div class="flex flex-col items-center">
-      <p class="text-md text-white dark:text-gray-300">Mood: {mood}</p>
+      <p class="text-md text-gray-300">Mood: {mood}</p>
     </div>
   </div>
 

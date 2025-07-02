@@ -6,12 +6,23 @@ import NowStats from "./NowStats.astro";
 const { intro, mood } = Astro.props;
 ---
 
-<div class="flex items-center space-x-6 mb-8">
-  <ProfilePicture size={96} />
-  <div>
-    <p class="text-lg text-gray-600 dark:text-gray-300">{intro}</p>
-    <NowStats />
-    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Mood: {mood}</p>
+<div class="relative p-6 mb-8 rounded-lg shadow-xl overflow-hidden
+             bg-gradient-to-br from-purple-600 to-blue-500 dark:from-gray-700 dark:to-gray-900">
+  <div class="flex flex-col items-center text-center mb-6">
+    <ProfilePicture size={128} class="mb-4" />
+    <p class="text-xl font-semibold text-white dark:text-gray-100">{intro}</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+    <div class="flex flex-col items-center">
+      <NowStats />
+    </div>
+    <div class="flex flex-col items-center">
+      <p class="text-md text-white dark:text-gray-300">Mood: {mood}</p>
+    </div>
+  </div>
+
+  <div class="flex justify-center">
     <SpotifyNowPlaying client:visible />
   </div>
 </div>

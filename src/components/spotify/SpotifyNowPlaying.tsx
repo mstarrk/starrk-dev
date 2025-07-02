@@ -23,7 +23,7 @@ export default function SpotifyNowPlaying() {
 
   return (
     <div class="p-3 border border-gray-700/50 rounded-md bg-gray-900/20 w-fit">
-      <p class="text-xs uppercase tracking-wide text-green-500 font-semibold mb-1">
+      <p class="text-xs uppercase tracking-wide text-white font-semibold mb-1">
         I'm Listening to
       </p>
       <a
@@ -40,8 +40,8 @@ export default function SpotifyNowPlaying() {
           class="rounded shadow"
         />
         <div>
-          <p class="font-semibold leading-tight">{data.title}</p>
-          <p class="text-sm text-gray-500">{data.artist}</p>
+          <p class="font-semibold leading-tight text-white">{data.title}</p>
+          <p class="text-sm text-white dark:text-gray-400">{data.artist}</p>
         </div>
       </a>
     </div>

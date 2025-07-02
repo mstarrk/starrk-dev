@@ -1,5 +1,6 @@
 ---
-// ProfileSection.astro
+import ProfilePicture from "../ui/ProfilePicture.astro";
+import ButtonLink from "../ui/ButtonLink.astro";
 ---
 
 <section
@@ -20,32 +21,18 @@
       </p>
 
       <div class="flex space-x-4 pt-4">
-        <a
-          href="/works"
-          class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700"
-        >
-          See My Work
-        </a>
+        <ButtonLink href="/works" variant="primary"> See My Work </ButtonLink>
 
-        <a
-          href="/contact"
-          class="inline-flex items-center justify-center px-5 py-2 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
-        >
-          Get in Touch
-        </a>
+        <ButtonLink href="/contact" variant="secondary">
+          Get In Touch
+        </ButtonLink>
       </div>
     </div>
   </div>
 
   <div class="w-48 h-48 md:w-64 md:h-64 relative">
-    <div
-      class="w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg"
-    >
-      <img
-        src="https://placehold.co/400x400/9C27B0/FFFFFF/png?text=JM&font=montserrat"
-        alt="Juan José Morales"
-        class="w-full h-full object-cover"
-      />
+    <div class="w-full h-full rounded-full overflow-hidden">
+      <ProfilePicture size={256} class="mb-4" />
     </div>
   </div>
 </section>

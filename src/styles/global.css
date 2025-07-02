@@ -16,11 +16,7 @@
   --border-color: 226, 232, 240;
 
   /* Gradient */
-  --gradient: linear-gradient(
-    135deg,
-    rgb(var(--primary)),
-    rgb(var(--accent))
-  );
+  --gradient: linear-gradient(135deg, rgb(var(--primary)), rgb(var(--accent)));
 
   /* Typography */
   --font-body: "Inter", system-ui, sans-serif;
@@ -99,26 +95,6 @@ img {
   --tw-prose-invert-links: rgb(var(--primary-light));
 }
 
-/* Custom component styles */
-.btn-primary {
-  @apply inline-flex items-center justify-center px-5 py-2 
-         text-base font-medium rounded-md text-white 
-         bg-gradient-to-r from-primary to-accent
-         hover:opacity-90;
-}
-
-.btn-secondary {
-  @apply inline-flex items-center justify-center px-5 py-2 border 
-         border-gray-300 dark:border-gray-600 text-base font-medium 
-         rounded-md text-gray-700 dark:text-gray-200 bg-white 
-         dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700;
-}
-.badge {
-  @apply inline-block px-2 py-1 text-xs font-medium bg-primary-light bg-opacity-10
-       dark:bg-primary-light dark:bg-opacity-20 text-primary-dark dark:text-primary-light 
-       rounded;
-}
-
 .prose h2 {
   font-size: 1.75rem;
   margin-top: 2rem;
@@ -192,6 +168,30 @@ img {
   padding: 0;
   font-size: 0.9em;
   color: inherit;
+}
+
+/* Custom component styles */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-5 py-2 
+         text-base font-medium rounded-md text-white 
+         bg-gradient-to-r from-primary to-accent
+         hover:opacity-90;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-5 py-2 border 
+         border-gray-300 dark:border-gray-600 text-base font-medium 
+         rounded-md text-gray-700 dark:text-gray-200 bg-white 
+         dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700;
+}
+.badge {
+  @apply inline-block px-2 py-1 text-xs font-medium bg-primary-light bg-opacity-10
+       dark:bg-primary-light dark:bg-opacity-20 text-primary-dark dark:text-primary-light 
+       rounded;
+}
+
+.card {
+  @apply relative rounded-lg p-6 shadow-xl overflow-hidden card-background-gradient;
 }
 
 .card-background-gradient {

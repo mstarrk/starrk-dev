@@ -11,7 +11,8 @@ type TopArtistsData = {
 };
 
 export default function SpotifyTopArtists() {
-  const { data, loading, error } = useSpotifyData<TopArtistsData>("top-artists");
+  const { data, loading, error } =
+    useSpotifyData<TopArtistsData>("top-artists");
 
   if (loading) {
     return <p>Loading top artists...</p>;

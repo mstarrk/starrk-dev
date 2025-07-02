@@ -2,7 +2,7 @@
 title: "CS50x Homepage Project"
 description: "Responsive, component-based homepage built with plain HTML, CSS, JavaScript, and Bootstrap — no frameworks or build tools."
 date: 2024-06-16
-thumbnail: "https://raw.githubusercontent.com/mstarrk/Homepage/main/assets/og-preview.jpg"
+thumbnail: "https://www.harvardmagazine.com/sites/default/files/img/article/0823/hm_8.10.23_cs50-ai_sm.jpg"
 liveUrl: "https://mstarrk.github.io/Homepage/"
 githubUrl: "https://github.com/mstarrk/Homepage"
 featured: true

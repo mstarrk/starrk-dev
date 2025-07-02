@@ -193,3 +193,7 @@ img {
   font-size: 0.9em;
   color: inherit;
 }
+
+.card-background-gradient {
+  @apply bg-gradient-to-br from-gray-700 to-gray-900;
+}

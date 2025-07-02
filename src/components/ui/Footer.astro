@@ -54,11 +54,7 @@ const navSections = [
       <div class="flex space-x-4">
         {
           socialLinks.map((link) => (
-            <SocialIconLink
-              href={link.url}
-              name={link.name}
-              aria-label={link.name}
-            />
+            <SocialIconLink href={link.url} name={link.name} />
           ))
         }
       </div>
